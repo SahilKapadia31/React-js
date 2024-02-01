@@ -1,0 +1,7 @@
+import React from "react"
+
+const App4 = () => {
+	return <div>App4</div>
+}
+
+export default App4
