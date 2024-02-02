@@ -15,7 +15,7 @@ const App = () => {
 				<Route path="/assignment-1" element={<App1 />} />
 				<Route path="/assignment-2" element={<App2 />} />
 				<Route path="/assignment-3" element={<App3 />} />
-				<Route path="/assignment-4" element={<App4 />} />
+				<Route path="/assignment-4" element={<App4 totalStars={5} />} />
 				{/* Add more routes for other assignments if needed */}
 				<Route path="/" element={<>{/*Componants  */}</>} />
 			</Routes>
