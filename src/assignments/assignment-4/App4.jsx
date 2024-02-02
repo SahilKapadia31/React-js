@@ -8,11 +8,11 @@ const App4 = () => {
 	})
 	const [displayData, setDisplay] = useState([])
 	const [ratings, setRating] = useState([
-		{ value: "1 star", label: "1 star" },
-		{ value: "2 star", label: "2 star" },
-		{ value: "3 star", label: "3 star" },
-		{ value: "4 star", label: "4 star" },
-		{ value: "5 star", label: "5 star" },
+		{ value: "1 ⭐", label: "1 ⭐" },
+		{ value: "2 ⭐⭐", label: "2 ⭐⭐" },
+		{ value: "3 ⭐⭐⭐", label: "3 ⭐⭐⭐" },
+		{ value: "4 ⭐⭐⭐⭐", label: "4 ⭐⭐⭐⭐" },
+		{ value: "5 ⭐⭐⭐⭐⭐", label: "5 ⭐⭐⭐⭐⭐" },
 	])
 
 	const handleChange = (e) => {
