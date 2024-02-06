@@ -1,0 +1,16 @@
+.h-100dvh {
+    height: 100dvh;
+}
+.main-banner {
+    background-image: url(../../assets/images/1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+.img-fluid {
+    height: 40px;
+    width: 69px;
+}
+.h-80dvh {
+    height: 80dvh;
+}

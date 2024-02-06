@@ -35,6 +35,11 @@ const Navbar = () => {
 								Assignment-4 <FaStaylinked /> Feedback Form
 							</Link>
 						</li>
+						<li>
+							<Link to="/assignment-5">
+								Assignment-5 <FaStaylinked /> Main Banner
+							</Link>
+						</li>
 					</ul>
 				</li>
 			</ul>
