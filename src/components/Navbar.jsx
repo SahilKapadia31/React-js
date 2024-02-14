@@ -5,7 +5,7 @@ import { FaStaylinked } from "react-icons/fa6"
 
 const Navbar = () => {
 	return (
-		<nav>
+		<nav className="">
 			<ul>
 				<li>
 					<Link to="/">Home</Link>
@@ -14,30 +14,41 @@ const Navbar = () => {
 					<span role="button">
 						Assignments <IoIosArrowDown />
 					</span>
-					<ul>
+					<ul className=" d-flex list-unstyled justify-content-between">
 						<li>
 							<Link to="/assignment-1">
-								Assignment-1 <FaStaylinked /> Header & Footer
+								Assignment-1 <br />
+								<FaStaylinked /> Header & Footer
 							</Link>
 						</li>
 						<li>
 							<Link to="/assignment-2">
-								Assignment-2 <FaStaylinked /> Counter
+								Assignment-2 <br />
+								<FaStaylinked /> Counter
 							</Link>
 						</li>
 						<li>
 							<Link to="/assignment-3">
-								Assignment-3 <FaStaylinked /> CRUD
+								Assignment-3 <br />
+								<FaStaylinked /> CRUD
 							</Link>
 						</li>
 						<li>
 							<Link to="/assignment-4">
-								Assignment-4 <FaStaylinked /> Feedback Form
+								Assignment-4 <br />
+								<FaStaylinked /> Feedback Form
 							</Link>
 						</li>
 						<li>
 							<Link to="/assignment-5">
-								Assignment-5 <FaStaylinked /> Main Banner
+								Assignment-5 <br />
+								<FaStaylinked /> Main Banner
+							</Link>
+						</li>
+						<li>
+							<Link to="/assignment-6">
+								Assignment-6 <br />
+								<FaStaylinked /> CRUD TABLE
 							</Link>
 						</li>
 					</ul>
