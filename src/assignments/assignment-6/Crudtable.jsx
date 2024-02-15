@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 function Crudtable() {
 	const [input, setInput] = useState({
@@ -18,20 +18,18 @@ function Crudtable() {
 		setInput({ ...input, [e.target.name]: e.target.value })
 	}
 
-	useEffect(() => {
-		if () {
-			localStorage.setItem("Data", JSON.stringify([...data, input]))
-		}
-	}, [data, input])
-
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		setData([...data, input])
 		setInput({ name: "", email: "", pass: "", gender: "", hobbies: [], course: "", address: "" })
 		if (edit) {
 			data[id] = input
 			setData(data)
+		} else {
+			setData([...data, input])
 		}
+
+		localStorage.setItem("Data", JSON.stringify([...data, input]))
+		setEdit(false)
 	}
 
 	const handleDelete = (toDelete) => {
