@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 function Crudtable() {
 	const [input, setInput] = useState({
@@ -10,9 +10,14 @@ function Crudtable() {
 		course: "",
 		address: "",
 	})
+
 	const [data, setData] = useState(JSON.parse(localStorage.getItem("Data")) || [])
 	const [edit, setEdit] = useState(false)
 	const [id, setId] = useState()
+
+	useEffect(() => {
+		localStorage.setItem("Data", JSON.stringify(data))
+	}, [data])
 
 	const handleChange = (e) => {
 		setInput({ ...input, [e.target.name]: e.target.value })
@@ -28,7 +33,6 @@ function Crudtable() {
 			setData([...data, input])
 		}
 
-		localStorage.setItem("Data", JSON.stringify([...data, input]))
 		setEdit(false)
 	}
 
