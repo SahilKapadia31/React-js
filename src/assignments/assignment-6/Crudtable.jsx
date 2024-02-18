@@ -20,7 +20,16 @@ function Crudtable() {
 	}, [data])
 
 	const handleChange = (e) => {
-		setInput({ ...input, [e.target.name]: e.target.value })
+		if (e.target.name == "hobbies") {
+			if (e.target.checked) {
+				input.hobbies.push(e.target.value)
+			} else {
+				input.hobbies = input.hobbies.filter((hobby) => hobby !== e.target.value)
+			}
+			setInput(input)
+		} else {
+			setInput({ ...input, [e.target.name]: e.target.value })
+		}
 	}
 
 	const handleSubmit = (e) => {
@@ -99,27 +108,11 @@ function Crudtable() {
 									Hobbies
 								</label>
 								<br />
-								<input
-									value={"Cricket"}
-									checked={input.hobbies == "Cricket"}
-									className="form-check-input border-secondary"
-									name="hobbies"
-									type="checkbox"
-									id="cricket"
-									onChange={handleChange}
-								/>
+								<input value={"Cricket"} className="form-check-input border-secondary" name="hobbies" type="checkbox" id="cricket" onChange={handleChange} />
 								<label className="form-check-label mx-2" htmlFor="cricket">
 									Cricket
 								</label>
-								<input
-									value={"Adventure Sports"}
-									checked={input.hobbies == "Adventure Sports"}
-									className="form-check-input border-secondary"
-									name="hobbies"
-									type="checkbox"
-									id="a-sports"
-									onChange={handleChange}
-								/>
+								<input value={"Adventure Sports"} className="form-check-input border-secondary" name="hobbies" type="checkbox" id="a-sports" onChange={handleChange} />
 								<label className="form-check-label ms-2" htmlFor="a-sports">
 									Adventure Sports
 								</label>
