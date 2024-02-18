@@ -12,6 +12,7 @@ function Form() {
 		address: "",
 	})
 	const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")) || [])
+	const [validation, setValidation] = useState(false)
 	const [edit, setEdit] = useState(false)
 	const navigate = useNavigate()
 	const uid = useParams()
@@ -40,7 +41,37 @@ function Form() {
 		}
 		setEdit(false)
 		setInput({ name: "", email: "", pass: "", gender: "", hobbies: [], course: "", address: "" })
-		navigate("/table")
+		setValidation(formValidate())
+		if (validation) {
+			navigate("/table")
+		}
+	}
+
+	const formValidate = () => {
+		var error = {}
+		if (input.name === "" || input.name === undefined) {
+			error.name = "Name is Required"
+			setValidation(true)
+		} else if (input.email === "" || input.email === undefined) {
+			error.email = "Email is Required"
+			setValidation(true)
+		} else if (input.pass === "" || input.pass === undefined) {
+			error.pass = "Password is Required"
+			setValidation(true)
+		} else if (input.gender === "" || input.gender === undefined) {
+			error.gender = "Gender is Required"
+			setValidation(true)
+		} else if (input.hobbies == [] || input.hobbies === null) {
+			error.hobbies = "Hobbies is Required"
+			setValidation(true)
+		} else if (input.course === "" || input.course === undefined) {
+			error.course = "Course is Required"
+			setValidation(true)
+		} else if (input.address === "" || input.address === undefined) {
+			error.address = "Address is Required"
+			setValidation(true)
+		}
+		return error
 	}
 
 	const handleChange = (e) => {
@@ -54,6 +85,7 @@ function Form() {
 		} else {
 			setInput({ ...input, [e.target.name]: e.target.value })
 		}
+		formValidate()
 	}
 
 	return (
@@ -68,18 +100,27 @@ function Form() {
 									Name
 								</label>
 								<input value={input.name} onChange={handleChange} name="name" type="text" className="form-control" id="name" />
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.name : ""}
+								</label>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="email" className="form-label fw-bold">
 									Email address
 								</label>
 								<input value={input.email} onChange={handleChange} name="email" type="email" className="form-control" id="email" />
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.email : ""}
+								</label>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="pass" className="form-label fw-bold">
 									Password
 								</label>
 								<input value={input.pass} onChange={handleChange} name="pass" type="password" className="form-control" id="pass" />
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.pass : ""}
+								</label>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="gender" className="form-label fw-bold">
@@ -102,6 +143,10 @@ function Form() {
 								<label className="form-check-label ms-2" htmlFor="female">
 									Female
 								</label>
+								<br />
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.gender : ""}
+								</label>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="hobbies" className="form-label fw-bold">
@@ -119,6 +164,9 @@ function Form() {
 								<input value={"Volly-Ball"} onChange={handleChange} className="form-check-input border-secondary" name="hobbies" type="checkbox" id="volly-ball" />
 								<label className="form-check-label ms-2" htmlFor="volly-ball">
 									Volly Ball
+								</label>{" "}
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.hobbies : ""}
 								</label>
 							</div>
 							<div>
@@ -132,12 +180,18 @@ function Form() {
 									<option value="Two">Two</option>
 									<option value="Three">Three</option>
 								</select>
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.course : ""}
+								</label>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="address" className="form-label fw-bold">
 									Address
 								</label>
 								<textarea value={input.address} onChange={handleChange} className="form-control" name="address" id="address" rows="3"></textarea>
+								<label htmlFor="" className="text-danger">
+									{validation ? validation.address : ""}
+								</label>
 							</div>
 							<button type="submit" className="btn btn-success">
 								{edit ? "Update" : "Submit"}

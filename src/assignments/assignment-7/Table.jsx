@@ -35,7 +35,7 @@ const Table = () => {
 									<td>{userData.email}</td>
 									<td>{userData.pass}</td>
 									<td>{userData.gender}</td>
-									<td>{userData.hobbies.joni(",")}</td>
+									<td>{userData.hobbies.join(",")}</td>
 									<td>{userData.course}</td>
 									<td>{userData.address}</td>
 									<td>
