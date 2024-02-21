@@ -12,8 +12,8 @@ function Form() {
 		address: "",
 	})
 	const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")) || [])
-	const [validation, setValidation] = useState(false)
 	const [edit, setEdit] = useState(false)
+	const [errors, setErrors] = useState({})
 	const navigate = useNavigate()
 	const uid = useParams()
 	const Id = uid.id
@@ -31,47 +31,50 @@ function Form() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if (edit) {
-			userData[Id] = input
-			setUserData(userData)
-			localStorage.setItem("userData", JSON.stringify(userData))
-		} else {
-			setUserData([...userData, input])
-			localStorage.setItem("userData", JSON.stringify([...userData, input]))
-		}
-		setEdit(false)
-		setInput({ name: "", email: "", pass: "", gender: "", hobbies: [], course: "", address: "" })
-		setValidation(formValidate())
-		if (validation) {
+		if (validate()) {
+			if (edit) {
+				userData[Id] = input
+				setUserData(userData)
+				localStorage.setItem("userData", JSON.stringify(userData))
+			} else {
+				setUserData([...userData, input])
+				localStorage.setItem("userData", JSON.stringify([...userData, input]))
+			}
+			setEdit(false)
+			setInput({ name: "", email: "", pass: "", gender: "", hobbies: [], course: "", address: "" })
 			navigate("/table")
 		}
 	}
 
-	const formValidate = () => {
-		var error = {}
-		if (input.name === "" || input.name === undefined) {
-			error.name = "Name is Required"
-			setValidation(true)
-		} else if (input.email === "" || input.email === undefined) {
-			error.email = "Email is Required"
-			setValidation(true)
-		} else if (input.pass === "" || input.pass === undefined) {
-			error.pass = "Password is Required"
-			setValidation(true)
-		} else if (input.gender === "" || input.gender === undefined) {
-			error.gender = "Gender is Required"
-			setValidation(true)
-		} else if (input.hobbies == [] || input.hobbies === null) {
-			error.hobbies = "Hobbies is Required"
-			setValidation(true)
-		} else if (input.course === "" || input.course === undefined) {
-			error.course = "Course is Required"
-			setValidation(true)
-		} else if (input.address === "" || input.address === undefined) {
-			error.address = "Address is Required"
-			setValidation(true)
+	const validate = () => {
+		let newErrors = {}
+		if (!input.name) {
+			newErrors.name = "Name is required"
 		}
-		return error
+		if (!input.email) {
+			newErrors.email = "Email is required"
+		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
+			newErrors.email = "Email is invalid"
+		}
+		if (!input.pass) {
+			newErrors.pass = "Password is required"
+		} else if (input.pass.length < 6) {
+			newErrors.pass = "Password must be at least 6 characters"
+		}
+		if (!input.gender) {
+			newErrors.gender = "Gender is required"
+		}
+		if (input.hobbies.length === 0) {
+			newErrors.hobbies = "At least one hobby is required"
+		}
+		if (!input.course || input.course === "Open this select menu") {
+			newErrors.course = "Course is required"
+		}
+		if (!input.address) {
+			newErrors.address = "Address is required"
+		}
+		setErrors(newErrors)
+		return Object.keys(newErrors).length === 0
 	}
 
 	const handleChange = (e) => {
@@ -85,7 +88,7 @@ function Form() {
 		} else {
 			setInput({ ...input, [e.target.name]: e.target.value })
 		}
-		formValidate()
+		setErrors({ ...errors, [e.target.name]: "" })
 	}
 
 	return (
@@ -100,27 +103,21 @@ function Form() {
 									Name
 								</label>
 								<input value={input.name} onChange={handleChange} name="name" type="text" className="form-control" id="name" />
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.name : ""}
-								</label>
+								<div className="text-danger">{errors.name}</div>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="email" className="form-label fw-bold">
 									Email address
 								</label>
 								<input value={input.email} onChange={handleChange} name="email" type="email" className="form-control" id="email" />
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.email : ""}
-								</label>
+								<div className="text-danger">{errors.email}</div>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="pass" className="form-label fw-bold">
 									Password
 								</label>
 								<input value={input.pass} onChange={handleChange} name="pass" type="password" className="form-control" id="pass" />
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.pass : ""}
-								</label>
+								<div className="text-danger">{errors.pass}</div>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="gender" className="form-label fw-bold">
@@ -143,10 +140,7 @@ function Form() {
 								<label className="form-check-label ms-2" htmlFor="female">
 									Female
 								</label>
-								<br />
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.gender : ""}
-								</label>
+								<div className="text-danger">{errors.gender}</div>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="hobbies" className="form-label fw-bold">
@@ -164,10 +158,8 @@ function Form() {
 								<input value={"Volly-Ball"} onChange={handleChange} className="form-check-input border-secondary" name="hobbies" type="checkbox" id="volly-ball" />
 								<label className="form-check-label ms-2" htmlFor="volly-ball">
 									Volly Ball
-								</label>{" "}
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.hobbies : ""}
 								</label>
+								<div className="text-danger">{errors.hobbies}</div>
 							</div>
 							<div>
 								<label htmlFor="course" className="form-label fw-bold">
@@ -180,18 +172,14 @@ function Form() {
 									<option value="Two">Two</option>
 									<option value="Three">Three</option>
 								</select>
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.course : ""}
-								</label>
+								<div className="text-danger">{errors.course}</div>
 							</div>
 							<div className="mb-3">
 								<label htmlFor="address" className="form-label fw-bold">
 									Address
 								</label>
 								<textarea value={input.address} onChange={handleChange} className="form-control" name="address" id="address" rows="3"></textarea>
-								<label htmlFor="" className="text-danger">
-									{validation ? validation.address : ""}
-								</label>
+								<div className="text-danger">{errors.address}</div>
 							</div>
 							<button type="submit" className="btn btn-success">
 								{edit ? "Update" : "Submit"}
