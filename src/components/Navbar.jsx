@@ -52,8 +52,8 @@ const Navbar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/assignment-7">
-								Assignment-7 <br />
+							<Link to="/assignment-7 & 8">
+								Assignment-7 & 8 <br />
 								<FaStaylinked /> Multi Page CRUD TABLE
 							</Link>
 						</li>
