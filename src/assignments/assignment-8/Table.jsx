@@ -35,8 +35,8 @@ const Table = () => {
 					<input type="text" className=" form-control" placeholder="Search" onChange={handleSearch} />
 				</div>
 				<div className="col-4">
-					<button className="btn btn-primary" onClick={() => handleClick("Reset")}>
-						All Data
+					<button className="btn btn-primary" onClick={handleSort}>
+						Sort
 					</button>
 					<button className="btn btn-danger mx-3" onClick={() => handleClick("Male")}>
 						Male
@@ -44,8 +44,8 @@ const Table = () => {
 					<button className="btn btn-success" onClick={() => handleClick("Female")}>
 						Female
 					</button>
-					<button className="btn btn-secondary ms-3" onClick={handleSort}>
-						Sort
+					<button className="btn btn-secondary ms-3" onClick={() => handleClick("Reset")}>
+						Reset
 					</button>
 				</div>
 			</div>
