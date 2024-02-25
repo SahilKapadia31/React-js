@@ -5,9 +5,9 @@ const Table = () => {
 	const [userData, setUserData] = useState(Data || [])
 
 	const handleSearch = (e) => {
-		let searchContex = e.target.value
-		if (searchContex !== "") {
-			let search = userData.filter((x) => x.name.includes(searchContex) || x.email.includes(searchContex))
+		let searchContext = e.target.value
+		if (searchContext !== "") {
+			let search = userData.filter((x) => x.name.toLowerCase().includes(searchContext.toLowerCase()) || x.email.toLowerCase().includes(searchContext.toLowerCase()))
 			setUserData(search)
 		} else {
 			setUserData(Data)
@@ -18,14 +18,14 @@ const Table = () => {
 		if (filter === "Male" || filter === "Female") {
 			let filteredData = Data.filter((x) => x.gender.includes(filter))
 			setUserData(filteredData)
-		} else if (filter === "All_data") {
+		} else if (filter === "Reset") {
 			setUserData(Data)
 		}
 	}
 
 	const handleSort = () => {
-		let x = [...userData].sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
-		setUserData(x)
+		let sortedData = [...userData].sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
+		setUserData(sortedData)
 	}
 
 	return (
@@ -35,7 +35,7 @@ const Table = () => {
 					<input type="text" className=" form-control" placeholder="Search" onChange={handleSearch} />
 				</div>
 				<div className="col-4">
-					<button className="btn btn-primary" onClick={() => handleClick("All_data")}>
+					<button className="btn btn-primary" onClick={() => handleClick("Reset")}>
 						All Data
 					</button>
 					<button className="btn btn-danger mx-3" onClick={() => handleClick("Male")}>
@@ -59,7 +59,7 @@ const Table = () => {
 							<th>Gender</th>
 							<th>Degree</th>
 							<th>Hobbies</th>
-							{/* <th>Address</th> */}
+							<th>Address</th>
 						</tr>
 					</thead>
 
@@ -73,7 +73,9 @@ const Table = () => {
 									<td>{userData.gender}</td>
 									<td>{userData.hobbies.join(",")}</td>
 									<td>{userData.degree}</td>
-									{/* <td>{userData.address}</td> */}
+									<td>
+										{userData.address.street},{userData.address.city},{userData.address.state},{userData.address.zip}
+									</td>
 								</tr>
 							))}
 					</tbody>
