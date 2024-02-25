@@ -1,0 +1,82 @@
+[
+	{
+		"name": "John Doe",
+		"email": "john.doe@email.com",
+		"gender": "Male",
+		"degree": "Computer Science",
+		"hobbies": ["Reading", "Coding", "Gaming"],
+		"address": { "street": "123 Main St", "city": "Anytown", "state": "CA", "zip": "12345" }
+	},
+	{
+		"name": "Jane Smith",
+		"email": "jane.smith@email.com",
+		"gender": "Female",
+		"degree": "Marketing",
+		"hobbies": ["Traveling", "Photography", "Cooking"],
+		"address": { "street": "456 Oak Ave", "city": "Anothercity", "state": "NY", "zip": "54321" }
+	},
+	{
+		"name": "Alex Johnson",
+		"email": "alex.johnson@email.com",
+		"gender": "Non-Binary",
+		"degree": "Environmental Science",
+		"hobbies": ["Hiking", "Painting", "Yoga"],
+		"address": { "street": "789 Pine Rd", "city": "Cityville", "state": "TX", "zip": "67890" }
+	},
+	{
+		"name": "Emily White",
+		"email": "emily.white@email.com",
+		"gender": "Female",
+		"degree": "Psychology",
+		"hobbies": ["Dancing", "Singing", "Reading"],
+		"address": { "street": "101 Elm Lane", "city": "Smalltown", "state": "AZ", "zip": "13579" }
+	},
+	{
+		"name": "David Brown",
+		"email": "david.brown@email.com",
+		"gender": "Male",
+		"degree": "Business Administration",
+		"hobbies": ["Golf", "Traveling", "Watching Movies"],
+		"address": { "street": "222 Birch St", "city": "Somewhere", "state": "FL", "zip": "24680" }
+	},
+	{
+		"name": "Sophia Miller",
+		"email": "sophia.miller@email.com",
+		"gender": "Female",
+		"degree": "Physics",
+		"hobbies": ["Swimming", "Chess", "Coding"],
+		"address": { "street": "333 Maple Ave", "city": "Nowhere", "state": "GA", "zip": "35791" }
+	},
+	{
+		"name": "Ryan Taylor",
+		"email": "ryan.taylor@email.com",
+		"gender": "Male",
+		"degree": "Electrical Engineering",
+		"hobbies": ["Basketball", "Gaming", "Reading"],
+		"address": { "street": "444 Cedar Rd", "city": "Everywhere", "state": "WA", "zip": "46802" }
+	},
+	{
+		"name": "Olivia Green",
+		"email": "olivia.green@email.com",
+		"gender": "Female",
+		"degree": "Chemistry",
+		"hobbies": ["Cooking", "Painting", "Cycling"],
+		"address": { "street": "555 Fir Lane", "city": "Uptown", "state": "OR", "zip": "57931" }
+	},
+	{
+		"name": "Mason Wilson",
+		"email": "mason.wilson@email.com",
+		"gender": "Male",
+		"degree": "Civil Engineering",
+		"hobbies": ["Hiking", "Photography", "Playing Guitar"],
+		"address": { "street": "666 Pine Ave", "city": "Downtown", "state": "CA", "zip": "60247" }
+	},
+	{
+		"name": "Ava Martinez",
+		"email": "ava.martinez@email.com",
+		"gender": "Female",
+		"degree": "History",
+		"hobbies": ["Traveling", "Writing", "Museums"],
+		"address": { "street": "777 Oak Rd", "city": "Uptown", "state": "NY", "zip": "71325" }
+	}
+]
