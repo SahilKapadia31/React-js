@@ -63,6 +63,12 @@ const Navbar = () => {
 								<FaStaylinked /> Filter,Sorting & Serching
 							</Link>
 						</li>
+						<li>
+							<Link to="/assignment-9">
+								Assignment-9 <br />
+								<FaStaylinked /> Redux-thunk
+							</Link>
+						</li>
 					</ul>
 				</li>
 			</ul>
