@@ -32,13 +32,13 @@ const Cart = () => {
 										<div className="col">
 											<div className="row text-muted">{item.title}</div>
 										</div>
-										 <div className="col">
-                                        <button className="btn btn-primary" disabled={item.quantity == 1 ? true : false} onClick={() => dispatch(decrement(item.id))}>-</button>
-                                        <span className=" mx-3">
-                                            {item.quantity}
-                                        </span>
-                                        <button className="btn btn-primary" onClick={() => dispatch(increment(item.id))}>+</button>
-                                    </div>
+										<div className="col">
+											<button className="btn btn-primary" disabled={item.quantity == 1 ? true : false} onClick={() => dispatch(decrement(item.id))}>-</button>
+											<span className=" mx-3">
+												{item.quantity}
+											</span>
+											<button className="btn btn-primary" onClick={() => dispatch(increment(item.id))}>+</button>
+										</div>
 										<div className="col">
 											₹ {item.price}
 											<button className="btn btn-danger btn-sm float-end " onClick={() => dispatch(removeItem(item.id))}>
