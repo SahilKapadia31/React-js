@@ -1,11 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { decrement, increment, removeItem } from "../../components/features/cartSlice"
+import { decrement, getCartTotal, increment, removeItem } from "../../components/features/cartSlice"
 
 const Cart = () => {
-	const cart = useSelector((state) => state.cart)
+	const { cart, totalQuantity, totalPrice } = useSelector((state) => state)
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(getCartTotal())
+	}, [cart])
 
 	return (
 		<div>
@@ -27,17 +31,19 @@ const Cart = () => {
 								cart.map((item) => (
 									<div className="row main align-items-center h-100" key={item.id}>
 										<div className="col-3">
-											<img className="" style={{height:"100px",width:"125px"}} src={item.img} />
+											<img className="" style={{ height: "100px", width: "125px" }} src={item.img} />
 										</div>
 										<div className="col">
 											<div className="row text-muted">{item.title}</div>
 										</div>
 										<div className="col">
-											<button className="btn btn-primary" disabled={item.quantity == 1 ? true : false} onClick={() => dispatch(decrement(item.id))}>-</button>
-											<span className=" mx-3">
-												{item.quantity}
-											</span>
-											<button className="btn btn-primary" onClick={() => dispatch(increment(item.id))}>+</button>
+											<button className="btn btn-primary" disabled={item.quantity == 1 ? true : false} onClick={() => dispatch(decrement(item.id))}>
+												-
+											</button>
+											<span className=" mx-3">{item.quantity}</span>
+											<button className="btn btn-primary" onClick={() => dispatch(increment(item.id))}>
+												+
+											</button>
 										</div>
 										<div className="col">
 											₹ {item.price}
@@ -66,12 +72,12 @@ const Cart = () => {
 						<hr />
 						<div className="row">
 							<div className="col ps-0">ITEMS</div>
-							<div className="col text-right">₹ 132.00</div>
+							<div className="col text-right">{totalQuantity}</div>
 						</div>
 
 						<div className="row" style={{ borderTop: "1px solid rgba(0,0,0,.1)", padding: "2vh 0" }}>
 							<div className="col">TOTAL PRICE</div>
-							<div className="col text-right">₹ 137.00</div>
+							<div className="col text-right">₹ {totalPrice}</div>
 						</div>
 						<button className="btn btn-success">CHECKOUT</button>
 					</div>
