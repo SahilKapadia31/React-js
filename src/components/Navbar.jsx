@@ -69,6 +69,12 @@ const Navbar = () => {
 								<FaStaylinked /> Redux-thunk
 							</Link>
 						</li>
+						<li>
+							<Link to="/assignment-10">
+								Assignment-10 <br />
+								<FaStaylinked /> Redux-thunk
+							</Link>
+						</li>
 					</ul>
 				</li>
 			</ul>
