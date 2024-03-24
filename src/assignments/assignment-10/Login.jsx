@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
 	const [users, setUsers] = useState(JSON.parse(localStorage.getItem("usersData")) || [])
+	const [validate, setvalidation] = useState("")
 	const navigate = useNavigate()
 
 	const initialValues = {
@@ -23,10 +24,13 @@ const Login = () => {
 		validationSchema: logInSchema,
 		onSubmit: (values, action) => {
 			let isUserExist = users.find((x) => x.email == values.email && x.password == values.password)
-			console.log(isUserExist)
-
-			if (isUserExist != "" && isUserExist != undefined) {
-				navigate("/signup")
+			if (!isUserExist) {
+				setvalidation("Incorrect email or password")
+			} else {
+				const isLogIn = true
+				isUserExist = { ...isUserExist, isLogIn }
+				localStorage.setItem("logedUser", JSON.stringify(isUserExist))
+				navigate("/assignment-5")
 			}
 		},
 	})
@@ -90,6 +94,7 @@ const Login = () => {
 													{errors.password && touched.password ? <p className="text-danger text-start">{errors.password}</p> : null}
 												</div>
 												<div className="">
+													<p className="text-danger text-start">{validate}</p>
 													<button className="btn d-flex align-items-center justify-content-center btn-login text-uppercase fw-medium" type="submit">
 														Continue
 													</button>
