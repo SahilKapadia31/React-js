@@ -69,10 +69,24 @@ const Navbar = () => {
 								<FaStaylinked /> Redux-thunk
 							</Link>
 						</li>
+					</ul>
+					<ul className=" d-flex list-unstyled column-gap-3 mt-3">
 						<li>
 							<Link to="/assignment-10">
 								Assignment-10 <br />
-								<FaStaylinked /> Redux-thunk
+								<FaStaylinked /> Api-hunter
+							</Link>
+						</li>
+						<li>
+							<Link to="/assignment-11">
+								Assignment-11 <br />
+								<FaStaylinked /> Crude with Firebase
+							</Link>
+						</li>
+						<li>
+							<Link to="/assignment-12">
+								Assignment-12 <br />
+								<FaStaylinked /> Firestore
 							</Link>
 						</li>
 					</ul>

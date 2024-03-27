@@ -12,6 +12,8 @@ import App7 from "./assignments/assignment-7/App7"
 import App8 from "./assignments/assignment-8/App8"
 import App9 from "./assignments/assignment-9/App9"
 import App10 from "./assignments/assignment-10/App10"
+import App11 from "./assignments/assignment-11/App11"
+// import App12 from "./assignments/assignment-12/App12"
 import Table from "./assignments/assignment-7/Table"
 import Form from "./assignments/assignment-7/Form"
 import Counter from "./Counter"
@@ -35,6 +37,8 @@ const App = () => {
 				<Route path="/assignment-8" element={<App8 />} />
 				<Route path="/assignment-9" element={<App9 />} />
 				<Route path="/assignment-10" element={<App10 />} />
+				<Route path="/assignment-11" element={<App11 />} />
+				{/* <Route path="/assignment-10" element={<App12 />} /> */}
 				{/* Add more routes for other assignments if needed */}
 				<Route path="/" element={<>{/*Componants  */}</>} />
 				<Route path="/table" element={<Table />} />
