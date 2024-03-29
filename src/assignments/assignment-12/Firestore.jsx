@@ -89,7 +89,7 @@ const Firestore = () => {
 					<div className="col-6">
 						<div className="rounded-4 pb-5">
 							<h1 className="text-center mb-5">Create Blog</h1>
-							<form class="signup-form bg-primary-subtle w-50" action="" onSubmit={handleSubmit}>
+							<form className="signup-form bg-primary-subtle w-50" action="" onSubmit={handleSubmit}>
 								<h2 className="text-center">Add Blog Data</h2>
 								<input type="text" name="name" id="" placeholder="Enter Your Name" onChange={handleChange} value={input ? input.name : ""} required />
 								<br />
@@ -108,24 +108,24 @@ const Firestore = () => {
 								{blogs &&
 									blogs.map((blog, id) => (
 										<div className="col-4">
-											<div key={id} class="card-container mb-4 p-3">
-												<div class="card-image">
+											<div key={id} className="card-container mb-4 p-3">
+												<div className="card-image">
 													<img
 														src="https://static.wixstatic.com/media/11062b_823da8115fcc44fca20049047695869a~mv2.jpeg/v1/fill/w_6625,h_3727,al_c,q_90/Mumbai%20City.jpeg"
 														alt=""
 													/>
 												</div>
-												<div class="card-body">
+												<div className="card-body">
 													<h1>{blog.topic_title}</h1>
-													<p class="card-subtitle">{blog.discription}</p>
-													<div class="card-author">
+													<p className="card-subtitle">{blog.discription}</p>
+													<div className="card-author">
 														<img
 															src="https://st3.depositphotos.com/5532432/17943/v/1600/depositphotos_179437388-stock-illustration-gentleman-flat-vector-icon.jpg"
 															alt="author avatar"
 														/>
-														<div class="author-info">
-															<p class="author-name">{blog.name}</p>
-															<p class="post-timestamp">{blog.submissionTime}</p>
+														<div className="author-info">
+															<p className="author-name">{blog.name}</p>
+															<p className="post-timestamp">{blog.submissionTime}</p>
 														</div>
 													</div>
 												</div>
