@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { db } from "../assignment-11/Realtime"
+import { database } from "../assignment-11/Realtime"
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore"
 import "./fire.css"
 
 const Firestore = () => {
-	const [input, setInput] = useState({})
+	const [input, setInput] = useState({
+		name: "",
+		topic_title: "",
+		description: "",
+	})
+
 	const [blogs, setBlogs] = useState()
 	const [edit, isEdit] = useState(false)
 	const [id, setId] = useState()
@@ -14,7 +19,7 @@ const Firestore = () => {
 	}, [blogs])
 
 	async function fetchBlogs() {
-		var blogs = await getDocs(collection(db, "blogs"))
+		var blogs = await getDocs(collection(database, "blogs"))
 		var list = []
 		blogs.forEach((blog) => {
 			var id = blog.id
@@ -45,17 +50,17 @@ const Firestore = () => {
 		e.preventDefault()
 		var timestamp = new Date()
 		if (edit) {
-			const blogRef = doc(db, `blogs/${id}`)
+			const blogRef = doc(database, `blogs/${id}`)
 			await updateDoc(blogRef, { ...input, timestamp })
 			isEdit(false)
-			setInput(null)
+			setInput({ name: "", topic_title: "", description: "" })
 		} else {
-			var blog = await addDoc(collection(db, "blogs"), { ...input, timestamp })
-			setInput(null)
+			var blog = await addDoc(collection(database, "blogs"), { ...input, timestamp })
+			setInput({ name: "", topic_title: "", description: "" })
 		}
 	}
 	async function fetchBlogs() {
-		var blogs = await getDocs(collection(db, "blogs"))
+		var blogs = await getDocs(collection(database, "blogs"))
 		var list = []
 		blogs.forEach((blog) => {
 			var id = blog.id
@@ -71,11 +76,11 @@ const Firestore = () => {
 	}
 
 	const handleDelete = async (id) => {
-		var deleData = await deleteDoc(doc(db, `blogs/${id}`))
+		var deleData = await deleteDoc(doc(database, `blogs/${id}`))
 	}
 
 	const handleEdit = async (id) => {
-		const blogRef = doc(db, `blogs/${id}`)
+		const blogRef = doc(database, `blogs/${id}`)
 		const docSnap = await getDoc(blogRef)
 		setInput(docSnap.data())
 		isEdit(true)
@@ -95,7 +100,7 @@ const Firestore = () => {
 								<br />
 								<input type="text" name="topic_title" id="" placeholder="Enter Topic Title" onChange={handleChange} value={input ? input.topic_title : ""} required />
 								<br />
-								<input type="text" name="discription" id="" placeholder="Add Discription" onChange={handleChange} value={input ? input.discription : ""} required />
+								<input type="text" name="description" id="" placeholder="Add Description" onChange={handleChange} value={input ? input.description : ""} required />
 								<br />
 								<button className="btn btn-success w-50 rounded-5">{edit ? "Change blog" : "Submit blog"}</button>
 							</form>
@@ -107,8 +112,8 @@ const Firestore = () => {
 							<div className="row gx-4">
 								{blogs &&
 									blogs.map((blog, id) => (
-										<div className="col-4">
-											<div key={id} className="card-container mb-4 p-3">
+										<div className="col-4" key={id}>
+											<div className="card-container mb-4 p-3">
 												<div className="card-image">
 													<img
 														src="https://static.wixstatic.com/media/11062b_823da8115fcc44fca20049047695869a~mv2.jpeg/v1/fill/w_6625,h_3727,al_c,q_90/Mumbai%20City.jpeg"
@@ -117,7 +122,7 @@ const Firestore = () => {
 												</div>
 												<div className="card-body">
 													<h1>{blog.topic_title}</h1>
-													<p className="card-subtitle">{blog.discription}</p>
+													<p className="card-subtitle">{blog.description}</p>
 													<div className="card-author">
 														<img
 															src="https://st3.depositphotos.com/5532432/17943/v/1600/depositphotos_179437388-stock-illustration-gentleman-flat-vector-icon.jpg"
