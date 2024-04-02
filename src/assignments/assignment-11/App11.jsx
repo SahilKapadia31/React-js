@@ -1,5 +1,5 @@
 import React from "react"
-import Crud from "./crud"
+import Crud from "./Crud"
 
 const App11 = () => {
 	return (
