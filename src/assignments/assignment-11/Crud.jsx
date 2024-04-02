@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { db } from "./Firebase"
+import { db } from "./Realtime"
 import { ref, set, push, onValue, get, update, remove } from "firebase/database"
 
 function Crud() {

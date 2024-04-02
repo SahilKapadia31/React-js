@@ -1,5 +1,5 @@
 import React from "react"
-import Firestore from "./Firestore"
+import Firestore from "./Firestorage"
 
 const App12 = () => {
 	return (
