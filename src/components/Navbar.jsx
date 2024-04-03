@@ -89,6 +89,12 @@ const Navbar = () => {
 								<FaStaylinked /> Firestore
 							</Link>
 						</li>
+						<li>
+							<Link to="/assignment-13">
+								Assignment-13 <br />
+								<FaStaylinked /> Google Authentication
+							</Link>
+						</li>
 					</ul>
 				</li>
 			</ul>

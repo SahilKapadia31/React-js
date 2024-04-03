@@ -8,15 +8,22 @@ class Mainbanner extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			user: [],
+			user: "",
 		}
 	}
 
 	componentDidMount() {
-		const savedUsers = JSON.parse(localStorage.getItem("logedUser")) || []
+		// const savedUsers = JSON.parse(localStorage.getItem("logedUser")) || []
+		const savedUsers = JSON.parse(localStorage.getItem("userData")) || []
+		console.log(savedUsers)
 		if (savedUsers !== null) {
-			this.setState({ user: savedUsers })
+			this.setState({ user: savedUsers.displayName })
 		}
+	}
+
+	handleLogOut = () => {
+		let login = false
+		localStorage.setItem("login", JSON.stringify(login))
 	}
 
 	render() {
@@ -36,14 +43,25 @@ class Mainbanner extends Component {
 							<Button className="rounded-5 fw-bold fs-6 px-3 me-3" variant="light">
 								VIEW CASE
 							</Button>
-							{user.isLogIn && (
-								<Link to={"/assignment-10"} className="rounded-5 bg-danger border-danger fw-bold fs-6 px-3 py-2 text-decoration-none text-white" variant="light">
+							{user && (
+								<Link
+									to={"/assignment-13"}
+									onClick={this.handleLogOut}
+									className="rounded-5 bg-danger border-danger fw-bold fs-6 px-3 py-2 text-decoration-none text-white"
+									variant="light"
+								>
 									Log-Out
 								</Link>
 							)}
+							{/* {user.isLogIn && (
+								<Link to={"/assignment-10"} className="rounded-5 bg-danger border-danger fw-bold fs-6 px-3 py-2 text-decoration-none text-white" variant="light">
+									Log-Out
+								</Link>
+							)} */}
 						</div>
 						<div className="fs-1 fw-semibold text-white">
-							Welcome <span className="text-danger">{user.username}</span>
+							Welcome <span className="text-danger">{user}</span>
+							{/* Welcome <span className="text-danger">{user.username}</span> */}
 						</div>
 					</div>
 				</div>

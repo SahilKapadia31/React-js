@@ -14,12 +14,14 @@ import App9 from "./assignments/assignment-9/App9"
 import App10 from "./assignments/assignment-10/App10"
 import App11 from "./assignments/assignment-11/App11"
 import App12 from "./assignments/assignment-12/App12"
+import App13 from "./assignments/assignment-13/App13"
 import Table from "./assignments/assignment-7/Table"
 import Form from "./assignments/assignment-7/Form"
 import Counter from "./Counter"
 import Cart from "./assignments/assignment-9/Cart"
 import ProductPage from "./assignments/assignment-9/ProductPage"
 import Login from "./assignments/assignment-10/Login"
+import LogIn from "./assignments/assignment-13/Login"
 import Signup from "./assignments/assignment-10/Signup"
 
 const App = () => {
@@ -39,6 +41,7 @@ const App = () => {
 				<Route path="/assignment-10" element={<App10 />} />
 				<Route path="/assignment-11" element={<App11 />} />
 				<Route path="/assignment-12" element={<App12 />} />
+				<Route path="/assignment-13" element={<App13 />} />
 				{/* Add more routes for other assignments if needed */}
 				<Route path="/" element={<>{/*Componants  */}</>} />
 				<Route path="/table" element={<Table />} />
@@ -47,6 +50,7 @@ const App = () => {
 				<Route path="/cart" element={<Cart />} />
 				<Route path="/productPage" element={<ProductPage />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/Login" element={<LogIn />} />
 				<Route path="/signup" element={<Signup />} />
 			</Routes>
 		</Router>
